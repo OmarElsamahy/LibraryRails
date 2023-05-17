@@ -2,16 +2,17 @@
 ar:
   activerecord:
     errors:
-      model:
+      messages:
+        record_invalid: "سجل_غير صالح"
+      models:
         review:
           attributes:
             rate:
-              not_included: "يجب أن يكون السعر بين 1 و 5"
               blank: "يجب تقييم الكتاب"
             comment:
               blank: "يجب أن يكون لديك تعليق مراجعة"
-          base:
-            you_can_only_add_review: "يمكنك فقط إضافة مراجعة لكتاب تم إرجاعه بنجاح."
+            base:
+              you_can_only_add_review: "يمكنك فقط إضافة مراجعة لكتاب تم إرجاعه بنجاح."
         borrow_request:
           attributes:
             issue_date:
@@ -22,8 +23,8 @@ ar:
               blank: "يجب أن يكون لديك تاريخ بدء الاستعارة"
             return_date:
               blank: "يجب أن يكون لديك تاريخ العودة"
-          base:
-            owned_by_other_user: 'تم استعارة هذا الكتاب بالفعل من قبل مستخدم آخر'
+            base:
+              owned_by_other_user: 'تم استعارة هذا الكتاب بالفعل من قبل مستخدم آخر'
         library:
           attributes:
             name:
@@ -53,3 +54,4 @@ ar:
               taken: "هذا البريد الإلكتروني قيد الاستخدام بالفعل."
             password:
               blank: "الرجاء إدخال كلمة المرور."
+              too_short: "كلمة المرور قصيرة جدًا (الحد الأدنى 8 أحرف)."

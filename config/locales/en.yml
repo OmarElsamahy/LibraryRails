@@ -32,7 +32,7 @@
 en:
   activerecord:
     errors:
-      model:
+      models:
         review:
           attributes:
             rate:
@@ -76,10 +76,10 @@ en:
             author:
               blank: "Must include author name"
         user:
-            attributes:
-              email:
-                blank: "Please provide an email address."
-                taken: "This email address is already in use."
-              password:
-                blank: "Please enter a password."
-                too_short: "Password is too short (minimum is 8 characters)."
+          attributes:
+            email:
+              blank: "Please provide an email address."
+              taken: "This email address is already in use."
+            password:
+              blank: "Please enter a password."
+              too_short: "Password is too short (minimum is 8 characters)."
