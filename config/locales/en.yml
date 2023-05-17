@@ -1,0 +1,85 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    errors:
+      model:
+        review:
+          attributes:
+            rate:
+              blank: "Must rate the book"
+            comment:
+              blank: "Must have review comment"
+            base:
+              you_can_only_add_review: "You can only add a review for a book you have successfully returned."
+        borrow_request:
+          attributes:
+            issue_date:
+              blank: "Must have Issue Date"
+            return_due_date:
+              blank: "Must have Return Due Date"
+            borrow_start_date:
+              blank: "Must have Borrow Start Date"
+            return_date:
+              blank: "Must have Return Date"
+            base:
+              owned_by_other_user: 'This book is already borrowed by another user'
+        library:
+          attributes:
+            name:
+              blank: "Must include name"
+            address:
+              blank: "Must include address"
+        shelf:
+          attributes:
+            location:
+              blank: "Must have location name"
+        category:
+          attributes:
+            name:
+              blank: "Must include name"
+        book:
+          attributes:
+            name: 
+              blank: "Must include name"
+            release_date:
+              blank: "Must include release date"
+            author:
+              blank: "Must include author name"
+        user:
+            attributes:
+              email:
+                blank: "Please provide an email address."
+                taken: "This email address is already in use."
+              password:
+                blank: "Please enter a password."
+                too_short: "Password is too short (minimum is 8 characters)."
