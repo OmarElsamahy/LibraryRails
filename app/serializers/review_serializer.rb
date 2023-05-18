@@ -1,0 +1,2 @@
+class ReviewSerializer < BaseSerializer
+end

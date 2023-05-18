@@ -1,0 +1,3 @@
+class ShelfSerializer < BaseSerializer
+
+end

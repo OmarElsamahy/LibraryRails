@@ -47,6 +47,8 @@ ar:
               blank: "يجب أن يتضمن تاريخ الإصدار"
             author:
               blank: "يجب أن يتضمن اسم المؤلف"
+            base:
+              release_date: "يجب قبل اليوم"
         user:
           attributes:
             email:

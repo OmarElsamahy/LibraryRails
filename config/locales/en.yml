@@ -75,6 +75,8 @@ en:
               blank: "Must include release date"
             author:
               blank: "Must include author name"
+            base:
+              release_date: "Must be created before today"
         user:
           attributes:
             email:

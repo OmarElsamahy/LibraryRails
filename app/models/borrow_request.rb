@@ -7,7 +7,9 @@ class BorrowRequest < ApplicationRecord
     validates :borrow_start_date , presence: true
     validates :return_date , presence: true
 
-    validates :validate_unique_accepted_request
+    validate :validate_unique_accepted_request
+
+    scope :successfully_accepted, -> { where(status: 'accepted') }
 
   private
 

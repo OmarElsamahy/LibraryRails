@@ -88,3 +88,5 @@ gem 'activeadmin'
 gem 'mobility', '~> 1.3.0.rc1'
 
 gem 'sidekiq', '< 7.0'
+
+gem 'sassc'
