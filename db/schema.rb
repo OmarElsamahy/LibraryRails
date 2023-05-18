@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_113426) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_113849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,9 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_113426) do
   create_table "borrow_requests", force: :cascade do |t|
     t.datetime "issue_date"
     t.date "return_due_date"
-    t.date "borrow_start_date"
-    t.date "return_date"
-    t.boolean "returned"
+    t.boolean "returned", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.enum "status", default: "pending", enum_type: "borrow_request_status"

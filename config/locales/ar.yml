@@ -49,6 +49,10 @@ ar:
               blank: "يجب أن يتضمن اسم المؤلف"
             base:
               release_date: "يجب قبل اليوم"
+        book_category:
+          attributes:
+            base:
+              exceed_limit: "لا يمكن ان تتعدي ثلاثه"
         user:
           attributes:
             email:

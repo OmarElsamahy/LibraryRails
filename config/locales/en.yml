@@ -77,6 +77,10 @@ en:
               blank: "Must include author name"
             base:
               release_date: "Must be created before today"
+        book_category:
+          attributes:
+            base:
+              exceed_limit: "can't exceed three"
         user:
           attributes:
             email:

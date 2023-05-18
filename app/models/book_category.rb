@@ -9,7 +9,7 @@ class BookCategory < ApplicationRecord
 
     def validate_categories_count
         if self.class.where(book_id: self.book_id).count >= 2
-            errors.add(:categories, "can't exceed three")
+            errors.add(:base, :exceed_limit)
         end
     end
 end

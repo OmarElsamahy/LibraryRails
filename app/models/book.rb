@@ -5,30 +5,24 @@ class Book < ApplicationRecord
     translates :name , type: :string
     translates :author , type: :string
 
-    has_many :reviews, as: :reviewable
+    has_many :reviews, as: :reviewable , dependent: :destroy
     belongs_to :shelf
-    # has_and_belongs_to_many :categories
     has_many :book_categories
-    has_many :categories, through: :book_categories
+    has_many :categories, through: :book_categories , dependent: :destroy
     has_many :borrow_requests
-    has_many :users, through: :borrow_requests  
+    has_many :users, through: :borrow_requests  , dependent: :destroy
 
     validates :name , presence: true
     validates :release_date , presence: true
     validates :author , presence: true
     validate :release_date_before_current_date
+    validates_presence_of :shelf
 
-
-    scope :with_category_count, -> {
-      joins(:book_categories)
-        .where(book_categories: { book_id: self.id })
-        .select('books.*, COUNT(DISTINCT book_categories.category_id) AS category_count')
-        .group('books.id')
-    }
 
   def release_date_before_current_date
     return unless release_date && release_date >= Date.current
 
     errors.add(:base, :release_date)
   end
+
 end

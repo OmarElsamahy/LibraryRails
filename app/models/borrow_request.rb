@@ -2,11 +2,12 @@ class BorrowRequest < ApplicationRecord
     belongs_to :user
     belongs_to :book
 
+    enum status: { pending: 'pending', accepted: 'accepted', denied: 'denied' }
+
     validates :issue_date , presence: true
     validates :return_due_date , presence: true
-    validates :borrow_start_date , presence: true
-    validates :return_date , presence: true
-
+    validates :user_id, presence: true
+    validates :book_id , presence: true
     validate :validate_unique_accepted_request
 
     scope :successfully_accepted, -> { where(status: 'accepted') }
