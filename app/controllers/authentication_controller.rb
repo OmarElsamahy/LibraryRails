@@ -3,7 +3,7 @@ class AuthenticationController < VerificationController
     # skip_before_action :authenticate_user
 
     before_action :token_verify , only: [:reset_password]
-
+    before_action :create_payload , only: [:verify_otp]
     def login
         @user = User.find_by_email(params[:email])
         if @user.valid_password?(params[:password])
@@ -26,18 +26,12 @@ class AuthenticationController < VerificationController
         end
       end
       # should send email with otp in it but for no i will render it
-      render json: {otp: @otp} 
+      render json: {otp: user.reset_password_token} 
     end
 
     def verify_otp
-      user = User.find_by(reset_password_token: params[:otp])
-      if user
-        payload = {}
-        payload[:otp] = user.reset_password_token
-        payload[:email] = user.email
-        payload[:id] = user.id
-        token = JwtToken.jwt_encode(payload: payload)
-        render json: {'Verification Token': token}
+      if @current_user
+        render json: {'Verification Token': @token}
       else
         render json: {errors: 'OTP Incorrect'}
       end

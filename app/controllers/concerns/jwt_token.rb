@@ -3,7 +3,7 @@ require "jwt"
 module JwtToken
 
     extend ActiveSupport::Concern
-    SECRET_KEY = Rails.application.credentials.secret_key_jwt
+    SECRET_KEY = Rails.application.credentials.secret_key_base
 
     def self.jwt_encode(payload, exp = 24.hours.from_now)
         payload[:exp] = exp.to_i

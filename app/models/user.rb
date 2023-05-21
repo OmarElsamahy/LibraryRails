@@ -13,12 +13,12 @@ class User < ApplicationRecord
     @otp = 6.times.map{rand(10)}.join.to_s
     dupe=true
     while dupe
-      user = User.where(reset_password_token: @otp).first
-      if user
+      userOTP = User.where(reset_password_token: @otp).first.present?
+      if userOTP
         @otp = 6.times.map{rand(10)}.join.to_s
       else
         dupe = false
-        user.reset_password_token = @otp
+        self.reset_password_token = @otp
       end
     end
   end
