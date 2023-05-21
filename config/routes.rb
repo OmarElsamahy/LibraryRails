@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   scope :users do
     resources :borrow_requests
+    post '/borrow_requests/return/:book_id', to: 'borrow_requests#return'
   end
   resources :books
   resources :reviews

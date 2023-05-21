@@ -1,6 +1,8 @@
-class AuthenticationController < ApplicationController
+class AuthenticationController < VerificationController
     
     # skip_before_action :authenticate_user
+
+    before_action :token_verify , only: [:reset_password]
 
     def login
         @user = User.find_by_email(params[:email])
@@ -14,20 +16,10 @@ class AuthenticationController < ApplicationController
     end
 
     def send_otp
-      @otp = 6.times.map{rand(10)}.join.to_s
-      dupe=true
-      while dupe
-        user = User.where(reset_password_token: @otp).first
-        if user
-          @otp = 6.times.map{rand(10)}.join.to_s
-        else
-          dupe = false
-        end
-      end
-      user = User.find_by_email(params[:email])
+      user = User.find_by(email: params[:email])
+      user.set_otp
       ActiveRecord::Base.transaction do
         begin
-          user.reset_password_token = @otp
           user.save!
         rescue => exception
           render json: {errors: exception}
@@ -52,21 +44,17 @@ class AuthenticationController < ApplicationController
     end
 
     def reset_password
-      token = request.headers["Verification-Token"].to_s
-      decoded = JwtToken.jwt_decode(token)
-      payload = decoded[:payload]
-      user = User.find_by_email(payload[:email])
-      if user 
+      if @current_user 
         if params[:password] == params[:password_confirmation]
           ActiveRecord::Base.transaction do
             begin
-              user.password = params[:password]
+              @current_user.password = params[:password]
 
-              user.reset_password_token = ""
+              @current_user.reset_password_token = ""
 
-              user.save!
+              @current_user.save!
 
-              render json: UserSerializer.new(user).serializable_hash.to_json
+              render json: UserSerializer.new(@current_user).serializable_hash.to_json
             rescue
               render json: {errors: "Error updating password in db"}
             end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_113849) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_075422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_113849) do
     t.enum "status", default: "pending", enum_type: "borrow_request_status"
     t.bigint "user_id"
     t.bigint "book_id"
+    t.boolean "notified"
     t.index ["book_id"], name: "index_borrow_requests_on_book_id"
     t.index ["user_id"], name: "index_borrow_requests_on_user_id"
   end

@@ -55,6 +55,10 @@ GEM
       kaminari (~> 1.0, >= 1.2.1)
       railties (>= 6.1, < 7.1)
       ransack (>= 2.1.1, < 4)
+    activeadmin-searchable_select (1.7.0)
+      activeadmin (>= 1.x, < 3)
+      jquery-rails (>= 3.0, < 5)
+      select2-rails (~> 4.0)
     activejob (7.0.4.3)
       activesupport (= 7.0.4.3)
       globalid (>= 0.3.6)
@@ -235,6 +239,7 @@ GEM
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
+    select2-rails (4.0.13)
     selenium-webdriver (4.9.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -284,6 +289,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activeadmin-searchable_select
   bootsnap
   capybara
   debug

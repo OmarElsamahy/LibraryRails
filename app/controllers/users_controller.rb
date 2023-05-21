@@ -12,8 +12,8 @@ class UsersController < BaseController
     def show
         successfully_borrowed_books = @current_user.books.includes(:borrow_requests).merge(BorrowRequest.successfully_accepted)
         render json: {
-            'User':UserSerializer.new(@current_user).serializable_hash.to_json ,
-            'Book':BookSerializer.new(successfully_borrowed_books).serializable_hash.to_json
+            'user':UserSerializer.new(@current_user).serializable_hash.to_json ,
+            'book':BookSerializer.new(successfully_borrowed_books).serializable_hash.to_json
         }
     end
 

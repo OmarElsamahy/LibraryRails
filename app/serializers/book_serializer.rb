@@ -1,10 +1,10 @@
 class BookSerializer < BaseSerializer      
   attributes :name , :author ,:release_date
-
-  def name
-    object.name
+  
+  attribute :author do |record|
+    record.author
   end
-  def author
-    object.author
+  attribute :name do |record|
+    record.name
   end
 end

@@ -24,7 +24,8 @@ class BorrowRequestsController < BaseController
     def return
         ActiveRecord::Base.transaction do
             begin
-                borrow_request = @current_user.borrow_requests.find(params[:id])
+                borrow_request =  @current_user.borrow_requests.find_by(book_id: book_id, returned: false)
+                # borrow_request = @current_user.borrow_requests.find(params[:id])
                 borrow_request.returned = true
                 borrow_request.save!
                 render json: BorrowRequestSerializer.new(borrow_request).serializable_hash.to_json

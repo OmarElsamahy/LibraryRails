@@ -18,7 +18,7 @@ ActiveAdmin.register Book do
         end
         f.input :release_date
         f.input :shelf
-        f.input :categories, as: :check_boxes, collection: Category.all
+        f.input :categories, as: :searchable_select, ajax: true #collection: Category.all ,
       end
       f.actions
     end

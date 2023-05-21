@@ -15,9 +15,8 @@ class BorrowRequest < ApplicationRecord
   private
 
   def validate_unique_accepted_request
-    existing_request = BorrowRequest.find_by(book_id: self.book_id, status: 'accepted' , returned: false)
-    if existing_request
-      errors.add(:base, :owned_by_other_user)
-    end
+    existing_request = BorrowRequest.find_by(book_id: self.book_id, user_id: self.user_id ,status: 'accepted' , returned: false).present?
+    errors.add(:base, :owned_by_other_user) if existing_request
   end
+  
 end
