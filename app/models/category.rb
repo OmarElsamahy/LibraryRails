@@ -3,7 +3,8 @@ class Category < ApplicationRecord
 
     translates :name , type: :string
 
-    has_and_belongs_to_many :books
+    has_many :book_categories
+    has_many :books , through: :book_categories
     
     validates :name , presence: true
   end

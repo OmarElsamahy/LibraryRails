@@ -18,7 +18,7 @@ ActiveAdmin.register Book do
         end
         f.input :release_date
         f.input :shelf
-        f.input :categories, as: :searchable_select, ajax: true #collection: Category.all ,
+        f.input(:categories, as: :searchable_select )# when i add , ajax: {resource: Category} ) i get No option collection named 'all' defined in 'Category' admin. error 
       end
       f.actions
     end
