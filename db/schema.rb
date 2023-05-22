@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_075422) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_111526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "borrow_request_status", ["pending", "accepted", "denied"]
+  create_enum "borrow_request_status", ["pending", "accepted", "denied", "returned"]
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -66,7 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_075422) do
   create_table "borrow_requests", force: :cascade do |t|
     t.datetime "issue_date"
     t.date "return_due_date"
-    t.boolean "returned", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.enum "status", default: "pending", enum_type: "borrow_request_status"

@@ -16,7 +16,7 @@ ActiveAdmin.register BorrowRequest do
   # end
 
   form do |f|
-    f.inputs "Borrow Request Details" do
+    f.inputs "Borrow Request Status Change" do
       f.input :status , as: :select, collection: BorrowRequest.statuses.keys
     end
     f.actions

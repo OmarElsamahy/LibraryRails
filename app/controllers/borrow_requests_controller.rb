@@ -24,29 +24,14 @@ class BorrowRequestsController < BaseController
     def return
         ActiveRecord::Base.transaction do
             begin
-                borrow_request =  @current_user.borrow_requests.find_by(book_id: book_id, returned: false)
-                # borrow_request = @current_user.borrow_requests.find(params[:id])
-                borrow_request.returned = true
-                borrow_request.save!
+                borrow_request =  @current_user.borrow_requests.find_by(book_id: params[:book_id],status: 'accepted')
+                borrow_request.returned!
                 render json: BorrowRequestSerializer.new(borrow_request).serializable_hash.to_json
             rescue => e 
                 render json: {errors: e}
             end
         end
     end
-
-    # def updateStatus
-    #     ActiveRecord::Base.transaction do
-    #         begin
-    #             borrow_request = @current_user.borrow_requests.find(params[:id])
-    #             borrow_request.status = params[:status]
-    #             borrow_request.save!
-    #             render json: BorrowRequestSerializer.new(borrow_request).serializable_hash.to_json
-    #         rescue => e 
-    #             render json: {errors: e}
-    #         end
-    #     end
-    # end
 
     def destroy
         ActiveRecord::Base.transaction do

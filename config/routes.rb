@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # devise_for :users
 
   scope :users do
+    post '/borrow_requests/:book_id', to: 'borrow_requests#return'
     resources :borrow_requests
-    post '/borrow_requests/return/:book_id', to: 'borrow_requests#return'
   end
   resources :books
   resources :reviews

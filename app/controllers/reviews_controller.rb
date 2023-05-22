@@ -13,10 +13,13 @@ class ReviewsController < BaseController
     def create
         ActiveRecord::Base.transaction do
             begin
-                @review = @current_user.reviews.create(review_params)
+                @review = @current_user.reviews.build(review_params)
+                @review.save
                 render json: ReviewSerializer.new(@review).serializable_hash.to_json
-            rescue
-                render json: {error: "Could not add review"} , status: :unprocessable_entity
+            rescue => e
+                return render json: { error: @review.errors.full_messages.join(', ') }, status: :unprocessable_entity if @review.errors.present?
+                
+                render json: {errors: e} , status: :unprocessable_entity
             end
         end
     end
@@ -25,13 +28,13 @@ class ReviewsController < BaseController
         @review = @current_user.reviews.find(params[:id])
         render json: ReviewSerializer.new(@review).serializable_hash.to_json
        rescue  => error
-        render json: {Error: "Review not found" } , status: :unprocessable_entity
+        render json: {errors: "Review not found" } , status: :unprocessable_entity
        end 
     end
 
     private
 
     def review_params
-        params.require(:review).permit(:comment ,:rate , :reviewable_type,:reviewable_id)
+        params.require(:review).permit(:comment ,:rate , :reviewable_type , :reviewable_id)
     end
 end

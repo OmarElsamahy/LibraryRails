@@ -24,10 +24,10 @@ class UsersController < BaseController
                 if @user.save!
                     render json: UserSerializer.new(@user).serializable_hash.to_json, status: :created
                 else
-                    render json: {"Error" => @user.errors.full_messages} , status: :internal_server_error
+                    render json: {errors: @user.errors.full_messages} , status: :internal_server_error
                 end                    
             rescue
-                render json: {"Error" => @user.errors.full_messages} , status: :internal_server_error
+                render json: {errors: @user.errors.full_messages} , status: :internal_server_error
             end
         end
     end
