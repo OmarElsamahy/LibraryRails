@@ -1,0 +1,63 @@
+
+ar:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "سجل_غير صالح"
+      models:
+        review:
+          attributes:
+            rate:
+              blank: "يجب تقييم الكتاب"
+            comment:
+              blank: "يجب أن يكون لديك تعليق مراجعة"
+            base:
+              you_can_only_add_review: "يمكنك فقط إضافة مراجعة لكتاب تم إرجاعه بنجاح."
+        borrow_request:
+          attributes:
+            issue_date:
+              blank: "يجب أن يكون لديك تاريخ الإصدار"
+            return_due_date:
+              blank: "يجب أن يكون لديك تاريخ استحقاق الإرجاع"
+            borrow_start_date:
+              blank: "يجب أن يكون لديك تاريخ بدء الاستعارة"
+            return_date:
+              blank: "يجب أن يكون لديك تاريخ العودة"
+            base:
+              owned_by_other_user: 'تم استعارة هذا الكتاب بالفعل من قبل مستخدم آخر'
+        library:
+          attributes:
+            name:
+              blank: "يجب أن يتضمن الاسم"
+            address:
+              blank: "يجب أن يتضمن العنوان"
+        shelf:
+          attributes:
+            location:
+              blank: "يجب أن يكون الحرف الأول حرفًا كبيرًا ، وثانيًا كرقم"
+        category:
+          attributes:
+            name:
+              blank: "يجب أن يتضمن الاسم"
+        book:
+          attributes:
+            name: 
+              blank: "يجب أن يتضمن الاسم"
+            release_date:
+              blank: "يجب أن يتضمن تاريخ الإصدار"
+            author:
+              blank: "يجب أن يتضمن اسم المؤلف"
+            base:
+              release_date: "يجب قبل اليوم"
+        book_category:
+          attributes:
+            base:
+              exceed_limit: "لا يمكن ان تتعدي ثلاثه"
+        user:
+          attributes:
+            email:
+              blank: "يرجى تقديم عنوان بريد إلكتروني."
+              taken: "هذا البريد الإلكتروني قيد الاستخدام بالفعل."
+            password:
+              blank: "الرجاء إدخال كلمة المرور."
+              too_short: "كلمة المرور قصيرة جدًا (الحد الأدنى 8 أحرف)."
